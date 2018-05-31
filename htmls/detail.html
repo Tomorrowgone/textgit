@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/common.js"></script>
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_682548_yxfqpj0fy2ic0udi.css"/>
+		<script src="//at.alicdn.com/t/font_682548_yxfqpj0fy2ic0udi.js"></script>
+		<script src="../js/jquery-1.11.0.js"></script>
+		<script src="../js/detail.js"></script>
+		<script src="../js/goProList.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="../css/index.css"/>
+		<style type="text/css">
+			img{
+				display: inline-block;
+				border: none;
+			}
+			#zoomBox{
+				position: relative;
+				width: 400px;
+				border: 1px solid #eee;
+			}
+			#midArea{
+				width: 400px;
+				height: 400px;
+				overflow: hidden;
+			}
+			#midArea img{
+				width: 400px;
+				height: 400px;
+			}
+			#zoom{
+				display: none;
+				position: absolute;
+				width: 200px;
+				height: 200px;
+				background: #ddd;
+				opacity: .5;
+				cursor: move;
+			}
+			#bigArea{
+				display: none;
+				position: absolute;
+				width: 400px;
+				height: 400px;
+				border: 1px solid #eee;
+				left: 430px;
+				top: -1px;
+				overflow: hidden;
+				z-index: 999;
+			}
+			#bigArea img{
+				position: absolute;
+				width: 800px;
+				height: 800px;
+			}
+			#smallArea{
+				height: 50px;
+				padding: 10px;
+				border: 1px solid #eee;
+			}
+			#smallArea img{
+				float: left;
+				margin-left: 10px;
+				width:40px;
+				height: 50px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+			<!--header------------->
+		<div id="header-wrap">
+			<div id="header">
+			<!--headerLeft-->
+				<div class="headerLeft">
+					<span class="welcome">考拉欢迎您！</span>
+					<a class="header-log" href="login.html">登录</a>
+					<a class="header-reg" href="register.html">免费注册</a>
+					<i class="isLoginVal"></i>
+					<span class="sel-kaola">
+						手机考拉海购
+						<i class="sel-img">
+							<img src="../images/sel-kaola.jpg"/>
+							<b>下载app</b>
+							<strong>领取1000元新人礼包</strong>
+						</i>
+					</span>
+				</div> 
+				<!--headerRight-->
+				<div class="headerRight">
+					<ul class="headerList">
+						<li class="headerLi">
+							<a href="">每日签到</a>
+						</li>
+						<li class="headerLi">
+							<a href="">我的订单</a>
+						</li>
+						<li class="headerLi">
+							<a href="">个人中心</a>
+							<span></span>
+							<div class="headerOlist">
+								<p class="headerOli">我的优惠券</p>
+								<p class="headerOli">我的红包</p>
+								<p class="headerOli">我的考拉豆</p>
+								<p class="headerOli">账号管理</p>
+								<p class="headerOli">我的实名认证</p>
+								<p class="headerOli">我收藏的商品</p>
+								<p class="headerOli">我关注的品牌</p>
+								<p class="headerOli">售后管理</p>
+							</div>
+						</li>
+						<li class="headerLi">
+							<a href="">客户服务</a>
+							<span></span>
+							<div class="headerOlist" style="bottom: -61px;">
+								<p class="headerOli">联系客服</p>
+								<p class="headerOli">帮助中心</p>
+							</div>
+						</li>
+						<li class="headerLi">
+							<a href="">充值中心</a>
+							<span></span>
+							<div class="headerOlist" style="bottom: -87px;">
+								<p class="headerOli">话费流量</p>
+								<p class="headerOli">游戏充值</p>
+								<p class="headerOli">AppStore充值码</p>
+							</div>
+						</li>
+						<li class="headerLi">
+							<a href="">消费者告知书</a>
+						</li>
+						<li class="headerLi">
+							<a style="border: 0;" href="">更多</a>
+							<span></span>
+							<div class="headerOlist" style="bottom: -182px;">
+								<p class="headerOli">收藏本站</p>
+								<p class="headerOli">新浪微博</p>
+								<p class="headerOli">微信公众号</p>
+								<p class="headerOli">易信公众号</p>
+								<p class="headerOli">招商合作</p>
+								<p class="headerOli">考拉招聘</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--toper-->
+		<div id="top-wrap">
+			<div class="top">
+				<a class="log" href="../index.html"></a>
+				<div class="top-main">
+					<form action="" method="post">
+						<input class="search" type="text" name="search" id="search" placeholder="在千万海外商品中搜索" />
+						
+						<input class="searchBtn" type="button"/>
+					</form>
+					<p>
+						<a href="#">话费充值</a>
+						<a href="#">面膜</a>
+						<a href="#">德运</a>
+						<a href="#">铁元</a>
+						<a href="#">sk2</a>
+						<a href="#">眼霜</a>
+						<a href="#">麦片</a>
+						<a href="#">电动牙刷</a>
+						<a href="#">乳胶枕</a>
+					</p>
+				</div>
+				<div class="cartNum">
+					<img src="../images/iconfont-cartfill.png"/>
+					<span>购物车</span> 
+					<i>0</i>
+				</div>
+			</div>
+		</div>
+		<!--nav-->
+		<div id="nav-wrap">
+			<div class="nav">
+				<div class="proListTab">
+					<b>
+						<i></i>
+						<i></i>
+						<i></i>
+					</b>
+					<span>所有分类</span>
+					<ul class="proUl">
+						<li>
+							<a class="font" href=""><img src="//haitao.nos.netease.com/iqkplg1m99_40_40.png?imageView&thumbnail=20x20&quality=100"/></a>
+							<span>母婴儿童</span>
+							<strong>&gt;</strong>
+							<div class="proList">
+								<div class="propice">
+									<h2>奶粉</h2>
+									<div>
+										<a>爱他美</a>
+										<a>牛栏</a>
+										<a>a2</a>
+										<a>喜宝</a>
+										<a>贝拉米</a>
+										<a>惠氏</a>
+										<a>美素佳儿</a>
+										<a>美林</a>
+										<a>雅培</a>
+										<a>美赞臣</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>纸尿裤/拉拉裤</h2>
+									<div>
+										<a>花王</a>
+										<a>尤妮佳</a>
+										<a>大王</a>
+										<a>好奇</a>
+										<a>帮宝适</a>
+										<a>妈咪宝贝</a>
+										<a>NB号</a>
+										<a>班博</a>
+										<a>丽贝乐</a>
+										<a>妮飘</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>营养辅食</h2>
+									<div>
+										<a>辅食泥</a>
+										<a>米粉迷糊</a>
+										<a>泡芙</a>
+										<a>溶溶豆</a>
+										<a>营养品</a>
+										<a>饼干</a>
+										<a>肉松面饼</a>
+										<a>调味品</a>
+										<a>其他辅食</a>
+										<a>其他零食</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>宝宝用品</h2>
+									<div>
+										<a>系数护肤</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>出行</a>
+										<a>清洁消毒</a>
+										<a>文具图书</a>
+										<a>积木</a>
+										<a>益智玩具</a>
+										<a>其他玩具</a>
+										<a>宝宝家居</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>童装童鞋</h2>
+									<div>
+										<a>系数护肤</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>童装</a>
+										<a>童鞋</a>
+										<a>儿童配饰</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>孕妈必备</h2>
+									<div>
+										<a>系数护肤</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>产前产后用品</a>
+										<a>孕妈洗护</a>
+										<a>孕期营养</a>
+										<a>孕妈服</a>
+										<a>妈咪包</a>
+									</div>
+								</div>
+								
+							</div>
+						</li>
+						<li>
+							<a class="font" href=""><img src="//haitao.nos.netease.com/iqkpnez751_40_40.png?imageView&thumbnail=20x20&quality=100"/></a>
+							<span>美容彩妆</span>
+							<strong>&gt;</strong>
+							<div class="proList">
+								<div class="propice">
+									<h2>护肤</h2>
+									<div>
+										<a>爱他美</a>
+										<a>牛栏</a>
+										<a>a2</a>
+										<a>喜宝</a>
+										<a>贝拉米</a>
+										<a>惠氏</a>
+										<a>美素佳儿</a>
+										<a>美林</a>
+										<a>雅培</a>
+										<a>美赞臣</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>面膜</h2>
+									<div>
+										<a>花王</a>
+										<a>尤妮佳</a>
+										<a>大王</a>
+										<a>好奇</a>
+										<a>帮宝适</a>
+										<a>妈咪宝贝</a>
+										<a>NB号</a>
+										<a>班博</a>
+										<a>丽贝乐</a>
+										<a>妮飘</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>彩妆</h2>
+									<div>
+										<a>辅食泥</a>
+										<a>米粉迷糊</a>
+										<a>泡芙</a>
+										<a>溶溶豆</a>
+										<a>营养品</a>
+										<a>饼干</a>
+										<a>肉松面饼</a>
+										<a>调味品</a>
+										<a>其他辅食</a>
+										<a>其他零食</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>防晒修复</h2>
+									<div>
+										<a>美迪惠尔</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>出行</a>
+										<a>清洁消毒</a>
+										<a>文具图书</a>
+										<a>积木</a>
+										<a>益智玩具</a>
+										<a>其他玩具</a>
+										<a>宝宝家居</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>香水/香氛</h2>
+									<div>
+										<a>系数护肤</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>童装</a>
+										<a>童鞋</a>
+										<a>儿童配饰</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a class="font" href=""><img src="//haitao.nos.netease.com/iqkpo5f994_40_40.png?imageView&thumbnail=20x20&quality=100"/></a>
+							<span>轻奢</span>
+							<strong>&gt;</strong>
+							<div class="proList">
+								<div class="propice">
+									<h2>精选大牌</h2>
+									<div>
+										<a>爱他美</a>
+										<a>牛栏</a>
+										<a>a2</a>
+										<a>喜宝</a>
+										<a>贝拉米</a>
+										<a>惠氏</a>
+										<a>美素佳儿</a>
+										<a>美林</a>
+										<a>雅培</a>
+										<a>美赞臣</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>手表配饰</h2>
+									<div>
+										<a>花王</a>
+										<a>尤妮佳</a>
+										<a>大王</a>
+										<a>好奇</a>
+										<a>帮宝适</a>
+										<a>妈咪宝贝</a>
+										<a>NB号</a>
+										<a>班博</a>
+										<a>丽贝乐</a>
+										<a>妮飘</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>服饰内衣</h2>
+									<div>
+										<a>辅食泥</a>
+										<a>米粉迷糊</a>
+										<a>泡芙</a>
+										<a>溶溶豆</a>
+										<a>营养品</a>
+										<a>饼干</a>
+										<a>肉松面饼</a>
+										<a>调味品</a>
+										<a>其他辅食</a>
+										<a>其他零食</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>女士箱包</h2>
+									<div>
+										<a>美迪惠尔</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>出行</a>
+										<a>清洁消毒</a>
+										<a>文具图书</a>
+										<a>积木</a>
+										<a>益智玩具</a>
+										<a>其他玩具</a>
+										<a>宝宝家居</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>男士箱包</h2>
+									<div>
+										<a>系数护肤</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>童装</a>
+										<a>童鞋</a>
+										<a>儿童配饰</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>鞋</h2>
+									<div>
+										<a>花王</a>
+										<a>尤妮佳</a>
+										<a>大王</a>
+										<a>好奇</a>
+										<a>帮宝适</a>
+										<a>妈咪宝贝</a>
+										<a>NB号</a>
+										<a>班博</a>
+										<a>丽贝乐</a>
+										<a>妮飘</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a class="font" href=""><img src="//haitao.nos.netease.com/iqkpow3285_40_40.png?imageView&thumbnail=20x20&quality=100"/></a>
+							<span>家具个护</span>
+							<strong>&gt;</strong>
+							<div class="proList">
+								<div class="propice">
+									<h2>女性护理</h2>
+									<div>
+										<a>爱他美</a>
+										<a>牛栏</a>
+										<a>a2</a>
+										<a>喜宝</a>
+										<a>贝拉米</a>
+										<a>惠氏</a>
+										<a>美素佳儿</a>
+										<a>美林</a>
+										<a>雅培</a>
+										<a>美赞臣</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>其他个护</h2>
+									<div>
+										<a>花王</a>
+										<a>尤妮佳</a>
+										<a>大王</a>
+										<a>好奇</a>
+										<a>帮宝适</a>
+										<a>妈咪宝贝</a>
+										<a>NB号</a>
+										<a>班博</a>
+										<a>丽贝乐</a>
+										<a>妮飘</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>宠物生活</h2>
+									<div>
+										<a>辅食泥</a>
+										<a>米粉迷糊</a>
+										<a>泡芙</a>
+										<a>溶溶豆</a>
+										<a>营养品</a>
+										<a>饼干</a>
+										<a>肉松面饼</a>
+										<a>调味品</a>
+										<a>其他辅食</a>
+										<a>其他零食</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>居家用品</h2>
+									<div>
+										<a>美迪惠尔</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>出行</a>
+										<a>清洁消毒</a>
+										<a>文具图书</a>
+										<a>积木</a>
+										<a>益智玩具</a>
+										<a>其他玩具</a>
+										<a>宝宝家居</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>家装家纺</h2>
+									<div>
+										<a>系数护肤</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>童装</a>
+										<a>童鞋</a>
+										<a>儿童配饰</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>洗护日用</h2>
+									<div>
+										<a>系数护肤</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>童装</a>
+										<a>童鞋</a>
+										<a>儿童配饰</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a class="font" href=""><img src="//haitao.nos.netease.com/iqkpq2ue80_40_40.png?imageView&thumbnail=20x20&quality=100"/></a>
+							<span>营养保健</span>
+							<strong>&gt;</strong>
+							<div class="proList">
+								<div class="propice">
+									<h2>健康养护</h2>
+									<div>
+										<a>爱他美</a>
+										<a>牛栏</a>
+										<a>a2</a>
+										<a>喜宝</a>
+										<a>贝拉米</a>
+										<a>惠氏</a>
+										<a>美素佳儿</a>
+										<a>美林</a>
+										<a>雅培</a>
+										<a>美赞臣</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>女性必备</h2>
+									<div>
+										<a>花王</a>
+										<a>尤妮佳</a>
+										<a>大王</a>
+										<a>好奇</a>
+										<a>帮宝适</a>
+										<a>妈咪宝贝</a>
+										<a>NB号</a>
+										<a>班博</a>
+										<a>丽贝乐</a>
+										<a>妮飘</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>关爱老年</h2>
+									<div>
+										<a>辅食泥</a>
+										<a>米粉迷糊</a>
+										<a>泡芙</a>
+										<a>溶溶豆</a>
+										<a>营养品</a>
+										<a>饼干</a>
+										<a>肉松面饼</a>
+										<a>调味品</a>
+										<a>其他辅食</a>
+										<a>其他零食</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>男性必备</h2>
+									<div>
+										<a>美迪惠尔</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>出行</a>
+										<a>清洁消毒</a>
+										<a>文具图书</a>
+										<a>积木</a>
+										<a>益智玩具</a>
+										<a>其他玩具</a>
+										<a>宝宝家居</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>国际汇</h2>
+									<div>
+										<a>系数护肤</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>童装</a>
+										<a>童鞋</a>
+										<a>儿童配饰</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>营养补充</h2>
+									<div>
+										<a>系数护肤</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>童装</a>
+										<a>童鞋</a>
+										<a>儿童配饰</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a class="font" href=""><img src="//haitao.nos.netease.com/1c50sn2pn89_40_40.png?imageView&thumbnail=20x20&quality=100"/></a>
+							<span>手表配饰</span>
+							<strong>&gt;</strong>
+							<div class="proList">
+								<div class="propice">
+									<h2>腕表</h2>
+									<div>
+										<a>爱他美</a>
+										<a>牛栏</a>
+										<a>a2</a>
+										<a>喜宝</a>
+										<a>贝拉米</a>
+										<a>惠氏</a>
+										<a>美素佳儿</a>
+										<a>美林</a>
+										<a>雅培</a>
+										<a>美赞臣</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>太阳眼镜</h2>
+									<div>
+										<a>花王</a>
+										<a>尤妮佳</a>
+										<a>大王</a>
+										<a>好奇</a>
+										<a>帮宝适</a>
+										<a>妈咪宝贝</a>
+										<a>NB号</a>
+										<a>班博</a>
+										<a>丽贝乐</a>
+										<a>妮飘</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>潮流饰品</h2>
+									<div>
+										<a>辅食泥</a>
+										<a>米粉迷糊</a>
+										<a>泡芙</a>
+										<a>溶溶豆</a>
+										<a>营养品</a>
+										<a>饼干</a>
+										<a>肉松面饼</a>
+										<a>调味品</a>
+										<a>其他辅食</a>
+										<a>其他零食</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>珠宝</h2>
+									<div>
+										<a>美迪惠尔</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>出行</a>
+										<a>清洁消毒</a>
+										<a>文具图书</a>
+										<a>积木</a>
+										<a>益智玩具</a>
+										<a>其他玩具</a>
+										<a>宝宝家居</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>黄金首饰</h2>
+									<div>
+										<a>系数护肤</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>童装</a>
+										<a>童鞋</a>
+										<a>儿童配饰</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a class="font" href=""><img src="//haitao.nos.netease.com/iqkpsh0e98_40_40.png?imageView&thumbnail=20x20&quality=100"/></a>
+							<span>数码家电</span>
+							<strong>&gt;</strong>
+							<div class="proList">
+								<div class="propice">
+									<h2>数码影音</h2>
+									<div>
+										<a>爱他美</a>
+										<a>牛栏</a>
+										<a>a2</a>
+										<a>喜宝</a>
+										<a>贝拉米</a>
+										<a>惠氏</a>
+										<a>美素佳儿</a>
+										<a>美林</a>
+										<a>雅培</a>
+										<a>美赞臣</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>生活电器</h2>
+									<div>
+										<a>花王</a>
+										<a>尤妮佳</a>
+										<a>大王</a>
+										<a>好奇</a>
+										<a>帮宝适</a>
+										<a>妈咪宝贝</a>
+										<a>NB号</a>
+										<a>班博</a>
+										<a>丽贝乐</a>
+										<a>妮飘</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>手机/配件</h2>
+									<div>
+										<a>辅食泥</a>
+										<a>米粉迷糊</a>
+										<a>泡芙</a>
+										<a>溶溶豆</a>
+										<a>营养品</a>
+										<a>饼干</a>
+										<a>肉松面饼</a>
+										<a>调味品</a>
+										<a>其他辅食</a>
+										<a>其他零食</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>厨房电器</h2>
+									<div>
+										<a>美迪惠尔</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>出行</a>
+										<a>清洁消毒</a>
+										<a>文具图书</a>
+										<a>积木</a>
+										<a>益智玩具</a>
+										<a>其他玩具</a>
+										<a>宝宝家居</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>办公/外设</h2>
+									<div>
+										<a>系数护肤</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>童装</a>
+										<a>童鞋</a>
+										<a>儿童配饰</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a class="font" href=""><img src="//haitao.nos.netease.com/iqkpr75617_40_40.png?imageView&thumbnail=20x20&quality=100"/></a>
+							<span>环球美食</span>
+							<strong>&gt;</strong>
+							<div class="proList">
+								<div class="propice">
+									<h2>人气热门</h2>
+									<div>
+										<a>爱他美</a>
+										<a>牛栏</a>
+										<a>a2</a>
+										<a>喜宝</a>
+										<a>贝拉米</a>
+										<a>惠氏</a>
+										<a>美素佳儿</a>
+										<a>美林</a>
+										<a>雅培</a>
+										<a>美赞臣</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>休闲零食</h2>
+									<div>
+										<a>花王</a>
+										<a>尤妮佳</a>
+										<a>大王</a>
+										<a>好奇</a>
+										<a>帮宝适</a>
+										<a>妈咪宝贝</a>
+										<a>NB号</a>
+										<a>班博</a>
+										<a>丽贝乐</a>
+										<a>妮飘</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>茶/酒/饮料</h2>
+									<div>
+										<a>辅食泥</a>
+										<a>米粉迷糊</a>
+										<a>泡芙</a>
+										<a>溶溶豆</a>
+										<a>营养品</a>
+										<a>饼干</a>
+										<a>肉松面饼</a>
+										<a>调味品</a>
+										<a>其他辅食</a>
+										<a>其他零食</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>水果生鲜</h2>
+									<div>
+										<a>美迪惠尔</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>出行</a>
+										<a>清洁消毒</a>
+										<a>文具图书</a>
+										<a>积木</a>
+										<a>益智玩具</a>
+										<a>其他玩具</a>
+										<a>宝宝家居</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>粮油副食</h2>
+									<div>
+										<a>系数护肤</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>童装</a>
+										<a>童鞋</a>
+										<a>儿童配饰</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a class="font" href=""><img src="//haitao.nos.netease.com/ir26dxt121_40_40.png?imageView&thumbnail=20x20&quality=100"/></a>
+							<span>运动户外</span>
+							<strong>&gt;</strong>
+							<div class="proList">
+								<div class="propice">
+									<h2>运动鞋</h2>
+									<div>
+										<a>爱他美</a>
+										<a>牛栏</a>
+										<a>a2</a>
+										<a>喜宝</a>
+										<a>贝拉米</a>
+										<a>惠氏</a>
+										<a>美素佳儿</a>
+										<a>美林</a>
+										<a>雅培</a>
+										<a>美赞臣</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>运动服装</h2>
+									<div>
+										<a>花王</a>
+										<a>尤妮佳</a>
+										<a>美赞臣</a>
+										<a>好奇</a>
+										<a>帮宝适</a>
+										<a>妈咪宝贝</a>
+										<a>NB号</a>
+										<a>班博</a>
+										<a>丽贝乐</a>
+										<a>妮飘</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>户外鞋靴</h2>
+									<div>
+										<a>美赞臣</a>
+										<a>米粉迷糊</a>
+										<a>泡芙</a>
+										<a>溶溶豆</a>
+										<a>营养品</a>
+										<a>饼干</a>
+										<a>肉松面饼</a>
+										<a>调味品</a>
+										<a>其他辅食</a>
+										<a>其他零食</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>户外服装</h2>
+									<div>
+										<a>美迪惠尔</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>美赞臣</a>
+										<a>清洁消毒</a>
+										<a>文具图书</a>
+										<a>积木</a>
+										<a>益智玩具</a>
+										<a>其他玩具</a>
+										<a>妈咪宝贝</a>
+										<a>NB号</a>
+										<a>班博</a>
+										<a>丽贝乐</a>
+										<a>妮飘</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>香水户外装备香氛</h2>
+									<div>
+										<a>系数护肤</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>童装</a>
+										<a>童鞋</a>
+										<a>儿童配饰</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a class="font" href=""><img src="//haitao.nos.netease.com/1c8cgvm0067_40_40.png?imageView&thumbnail=20x20&quality=100"/></a>
+							<span>服饰鞋靴</span>
+							<strong>&gt;</strong>
+							<div class="proList">
+								<div class="propice">
+									<h2>型格男装</h2>
+									<div>
+										<a>文具图书</a>
+										<a>积木</a>
+										<a>益智玩具</a>
+										<a>其他玩具</a>
+										<a>妈咪宝贝</a>
+										<a>NB号</a>
+										<a>班博</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>童鞋</a>
+										<a>儿童配饰</a>
+										<a>爱他美</a>
+										<a>a2</a>
+										<a>喜宝</a>
+										<a>贝拉米</a>
+										<a>惠氏</a>
+										<a>美林</a>
+										<a>雅培</a>
+										<a>美赞臣</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>魅力内衣</h2>
+									<div>
+										<a>花王</a>
+										<a>尤妮佳</a>
+										<a>大王</a>
+										<a>好奇</a>
+										<a>帮宝适</a>
+										<a>花王</a>
+										<a>尤妮佳</a>
+										<a>大王</a>
+										<a>好奇</a>
+										<a>帮宝适</a>
+										<a>妈咪宝贝</a>
+										<a>NB号</a>
+										<a>班博</a>
+										<a>丽贝乐</a>
+										<a>妮飘</a>
+										<a>妈咪宝贝</a>
+										<a>系数护肤</a>
+										<a>护理</a>
+										<a>喂养</a>
+										<a>童装</a>
+										<a>童鞋</a>
+										<a>儿童配饰</a>
+										<a>NB号</a>
+										<a>班博</a>
+										<a>丽贝乐</a>
+										<a>妮飘</a>
+									</div>
+								</div>
+								<div class="propice">
+									<h2>品质鞋包</h2>
+									<div>
+										<a>辅食泥</a>
+										<a>米粉迷糊</a>
+										<a>泡芙</a>
+										<a>溶溶豆</a>
+										<a>营养品</a>
+										<a>饼干</a>
+										<a>肉松面饼</a>
+										<a>调味品</a>
+										<a>其他辅食</a>
+										<a>其他零食</a>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<ul class="navTab">
+					<li>
+						<a href="">首页</a>
+						<a href="">今日限时购</a>
+						<a href="">每日上新</a>
+						<a href="">国家馆</a>
+						<a href="">全球旗舰</a>
+						<a href="">工厂店</a>
+						<a href="">品质奶粉</a>
+						<a href="">人气面膜</a>
+						<a href="">充值</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="detailMainWrap">
+			<div id="detailMain">
+				<div class="detailMaintit">111</div>
+				<div id="detailBox">
+					<!--放大镜模块-->
+					<div id="zoomBox">
+						<div id="midArea">
+							<img src="">
+							<div id="zoom"></div>
+						</div>
+						<div id="bigArea">
+							<img src="">
+						</div>
+						<div id="smallArea">
+							<!--点击小图，将中图和大图的img的src换掉-->
+							<img src="" alt="" />
+							
+						</div>
+					</div>
+					<div class="detailBoxRight">
+						<div class="detail-rt">
+							<img src="//haitao.nosdn2.127.net/iczukrul93.JPG?imageView&thumbnail=48x0&quality=85"/>
+							<span>中国 </span>
+							<span>|</span> 
+							<a href="">minizone</a>
+						</div>
+						<div class="detailRightInfo">
+							<!--<h3 class='detailInfoName'>考拉工厂店 无痕柔软粉底刷</h3>
+							<a class='detailInfoTitle' href=''>别致造型粉底刷，手柄采用力学原理，方便抓握。大面积平整刷毛可以快速上妆，令妆感细腻均匀通透</a>
+							<div class='detailPrice">
+								
+									<span class='shoujia'>售价：</span>
+									<strong class='jiage'>
+										
+										<i class='jg'>¥49.00</i> 
+										<i class='by'>包邮 参考价 
+											<i>¥49.00</i>
+											<br />
+											<span> 黑卡下单再享96折    开通黑卡</span>
+										</i>
+									</strong>
+								
+							</div>
+							<p><span>活动</span>新人专享 工厂店新人专享</p>
+							<p><span>运费至</span>河南/济源市/济源市  免运费</p>
+							<div class='m-buyBox'>
+							  <span>数量</span>
+							  <em>
+							    <span>
+							      <a href='javascript:void(0);'>-</a>
+							      <input type='text' value=''>
+							      <a href='javascript:void(0);'>+</a>
+							    </span>
+							    <span>单次限购1件</span>
+							  </em>
+							</div>
+							<div class='huiyuan'>说明黑卡会员96折 支持30天无忧退货不可支持使用优惠券</div>
+							<button class='addCart'>添加购物车</button>
+							<span class="like">收藏</span>
+						</div>-->
+					</div>
+				</div>
+			</div>
+		</div>
+</div>	
+
+		<!---------------footer-------------->
+		
+		<div id='footer-wrap'>
+			<div class="footer">
+				<div class="fotList">
+					<ul class="fotListUl1">
+						<li>
+							<span>&#xe6f4;</span>
+							<h2><strong>100%正品</strong><b>正品保障 假一赔十</b></h2>
+						</li>
+						<li>
+							<span>&#xe70e;</span>
+							<h2><strong>低价保障</strong><b>缩减中间环节 确保低价</b></h2>
+						</li>
+						<li>
+							<span>&#xe621;</span>
+							<h2><strong>30天无忧退货</strong><b>国内退货 售后无忧</b></h2>
+						</li>
+						<li>
+							<span>&#xe600;</span>
+							<h2><strong>满88包邮</strong><b>部分特殊商品除外</b></h2>
+						</li>
+					</ul>
+				</div>
+				<div class="guildeList">
+					<ul class="fotListUl2">
+						<li>
+							<a class="logokaola" href="">1</a>
+							<div class="callLog">
+								<b>关注我们</b>
+								<span></span>
+								<em></em>
+								<i></i>
+							</div>
+						</li>
+						<li>
+							<dl>
+								<dt>考拉保障</dt>
+								<dd>假一赔十</dd>
+								<dd>廉正监督</dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt>新手指南</dt>
+								<dd>购物流程</dd>
+								<dd>支付方式</dd>
+								<dd>通关税费</dd>
+								<dd>常见问题</dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt>售后服务</dt>
+								<dd>退货政策</dd>
+								<dd>退货流程</dd>
+								<dd>退款说明</dd>
+								<dd>联系客服</dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt>物流配送</dt>
+								<dd>配送方式</dd>
+								<dd>配送服务</dd>
+								<dd>运费标准</dd>
+								<dd>物流跟踪</dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt>关于我们</dt>
+								<dd>联系我们</dd>
+								<dd>招商合作</dd>
+								<dd>销售联盟</dd>
+								<dd>CEO邮箱</dd>
+							</dl>
+						</li>
+						<li>
+							<img src="//mm.bst.126.net/images/index/2dcode-app.jpg"/>
+							扫描下载手机版
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+<!--bottom-->
+<div id="bottom-wrap">
+	<a href="" title="About NetEase">About NetEase</a> - <a href="" rel="nofollow"  title="公司简介">公司简介</a> - <a href="" rel="nofollow"  title="联系方法">联系方法</a> - <a href=""  title="友情链接" data-param="zn=footer">友情链接</a> - <a href="" rel="nofollow"  title="招聘信息">招聘信息</a> - <a href=""  title="客户服务">客户服务</a> - <a href=""  title="隐私政策">隐私政策</a> - <a href="" rel="nofollow"  title="网络营销">网络营销</a> - <a href=""  title="网站地图" data-param="zn=footer">网站地图</a> - <a href=""  title="网易考拉海购" data-param="zn=footer">网易考拉海购</a>
+	<br>
+	<span class="m-license">网络文化经营许可证：浙网文[2016]0155-055号</span>
+	<span class="m-license">增值电信业务经营许可证：浙B2-20160288</span>
+	<span class="m-license"><a href="//www.kaola.com/activity/detail/26856.shtml" rel="nofollow" target="_blank" title="自营经营者信息">自营经营者信息</a></span>
+	<br>
+	<a class="bottom-one" href="">
+		<img src="//haitao.nos.netease.com/f28aa8ee818a42bf832341f605eccefb.png">
+	</a>
+	<a target="_blank" href="">
+		<span style="margin: 0px 0px 0px 5px;">浙公网安备 33010802002216号</span>
+	</a>
+	<span class="m-license">网易公司版权所有©1997-2018</span>
+	<a target="_blank" href="">
+		<span style="margin: 0px 0px 0px 20px;">互联网药品信息服务资格证书编号（浙）-2017-0027</span>
+	</a>
+	<div class="f-tac" id="auto-id-1527423176386">
+		<a id="___szfw_logo___" href="" target="_blank">
+			<img style="height:30px; margin:5px 15px 0 0;" src="//haitao.nos.netease.com/86998579-754f-4f2c-b800-5dae6404a1f6.png" border="0">
+		</a>
+		<span id="KXYZ">
+			<a href="" id="kx_verify" tabindex="-1" target="_blank" kx_type="图标式" style="display:inline-block;">
+				<img src="//haitao.nos.netease.com/d720d83b55a04b6f932ea845c673c5bf.png" alt="可信网站">
+			</a>
+		</span>
+		<a class="u-shield" href="" target="_blank">
+			<img src="//haitao.nos.netease.com/d071c0de-5360-4dcb-915a-f9f9bb62a9d5.gif" alt="工商营业执照网上标识">
+		</a>
+	</div>
+</div>
+	</body>
+</html>
